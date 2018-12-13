@@ -3,10 +3,10 @@ pipeline {
         dockerfile true
     }
     stages {
-        stage('Test') {
+        stage('Example') {
             steps {
-                sh 'node --version'
-                sh 'svn --version'
+                echo 'Hello World!'
+                sh 'echo myCustomEnvVar = $myCustomEnvVar'
             }
         }
     }

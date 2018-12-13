@@ -1,2 +1,7 @@
-FROM node:7-alpine
-RUN apk add -U subversion
+# Base Image
+FROM ubuntu
+
+# Do image configuration
+RUN /bin/bash - c 'echo This would generally be apt-get or other system...'
+ENV myCustomEnvVar="This is a sample." \
+    otherEnvVar="This is also a sample"

@@ -1,0 +1,23 @@
+pipeline {
+    agent {
+        docker {
+            image 'python:3.5.1'
+        }
+    }
+    }
+    stages {
+        stage('Example stage 1') {
+            steps {
+                withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-ssh-key-for-abc', keyFileVariable: 'SSH_KEY_FOR_ABC')]) {
+                    //
+                }
+                withCredentials(bindings: [certificate(credentialsId: 'jenkins-certificate-for-xyz', keystoreVariable: 'CERTIFICATE_FOR_XYZ', passwordVariable: 'XYZ-CERTIFICATE-PASSWORD')]) {
+                    //
+                }
+            }
+        }
+        stage('Example stage 2') {
+            //
+        }
+    }
+}
