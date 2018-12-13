@@ -7,10 +7,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh """
-                    ls -l
-                    exit 1
-                """
+                sh 'echo "Fail!"; exit 1'
             }
         }
     }
