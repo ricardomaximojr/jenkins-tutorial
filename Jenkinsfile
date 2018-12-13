@@ -1,19 +1,13 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.5.1'
+            image 'node:7-alpine'
         }
     }
-    environment {
-        CC = 'clang'
-    }
     stages {
-        stage('Example') {
-            environment {
-                DEBUG_FLAGS = '-g'
-            }
+        stage('Test') {
             steps {
-                sh 'printenv'
+                sh 'node --version'
             }
         }
     }
