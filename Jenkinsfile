@@ -16,10 +16,10 @@ pipeline {
     }
     post {
         always {
-            echo "Always print this!"
+            echo 'This will be printed always!'
         }
         failure {
-            mail to: ricardomaximojr@gmail.com, subject: 'The Pipeline failed :('
+            mail to: "ricardomaximojr@gmail.com", subject: 'The Pipeline failed :('
         }
     }
 }
