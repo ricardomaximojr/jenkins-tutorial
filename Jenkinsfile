@@ -19,7 +19,9 @@ pipeline {
             echo 'This will be printed always!'
         }
         failure {
-            mail to: "ricardomaximojr@gmail.com", subject: 'The Pipeline failed :('
+            mail to: "ricardomaximojr@gmail.com", 
+                 subject: 'The Pipeline failed :(',
+                 body: "Pipeline failed due to exit 1 sh step"
         }
     }
 }
