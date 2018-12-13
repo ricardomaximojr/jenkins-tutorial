@@ -8,7 +8,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh """
-                    echo "Test failed"
+                    ls -l
                     exit 1
                 """
             }
@@ -19,9 +19,9 @@ pipeline {
             echo 'This will be printed always!'
         }
         failure {
-            mail to: "ricardomaximojr@gmail.com", 
-                 subject: 'The Pipeline failed :(',
-                 body: "Pipeline failed due to exit 1 sh step"
+            mail to: 'ricardomaximojr@gmail.com', 
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}
+                 body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
