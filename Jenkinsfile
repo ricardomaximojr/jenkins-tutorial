@@ -20,7 +20,7 @@ pipeline {
         }
         failure {
             mail to: 'ricardomaximojr@gmail.com', 
-                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                  body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
