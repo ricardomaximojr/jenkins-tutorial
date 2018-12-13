@@ -10,10 +10,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh '''
-                    echo 'Hello Mr. ${username}'
-                    echo "I said, Hello Mr. ${username}"
-                '''
+                sh "echo 'Hello Mr. ${username}'"
+                sh "echo "I said, Hello Mr. ${username}""
                 }
             }
         }
