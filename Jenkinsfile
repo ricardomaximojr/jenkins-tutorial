@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        username = "Jenkins"
+    }
     agent {
         docker {
             image 'python:3.5.1'
@@ -7,10 +10,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                script {
-                    def username = 'Jenkins'
+                sh '''
                     echo 'Hello Mr. ${username}'
                     echo "I said, Hello Mr. ${username}"
+                '''
                 }
             }
         }
