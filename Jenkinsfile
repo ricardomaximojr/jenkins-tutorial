@@ -7,11 +7,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh '''
+                script {
                     def username = 'Jenkins'
                     echo 'Hello Mr. ${username}'
                     echo "I said, Hello Mr. ${username}"
-                '''
+                }
             }
         }
     }
