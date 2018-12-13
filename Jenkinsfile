@@ -8,12 +8,9 @@ pipeline {
         }
     }
     stages {
-        stage('build') {
+        stage('Example') {
             steps {
-                sh '''
-                    echo 'Hello Mr. ${username}'
-                    echo "I said, Hello Mr. ${username}"
-                '''
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
     }
