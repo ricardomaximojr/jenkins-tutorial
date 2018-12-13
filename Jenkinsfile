@@ -12,7 +12,6 @@ pipeline {
             steps {
                 sh "echo 'Hello Mr. ${username}'"
                 sh "echo "I said, Hello Mr. ${username}""
-                }
             }
         }
     }
