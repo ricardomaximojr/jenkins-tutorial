@@ -19,7 +19,7 @@ pipeline {
             echo "Always print this!"
         }
         failure {
-            mail to: ricardomaximojr@gmail.com, subject: "The Pipeline failed :("
+            mail to: ricardomaximojr@gmail.com, subject: 'The Pipeline failed :('
         }
     }
 }
