@@ -5,7 +5,7 @@ pipeline {
             input {
                 message 'Should we continue?'
                 ok 'Yes, we should.'
-                submitter 'alice,bob'
+                submitter 'rmaximo'
                 parameters {
                     string(
                         name: 'PERSON',
