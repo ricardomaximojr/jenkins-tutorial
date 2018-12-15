@@ -1,13 +1,21 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:7-alpine'
-        }
-    }
+    agent any
     stages {
-        stage('Test') {
+        stage('Example') {
+            input {
+                message 'Should we continue?'
+                ok 'Yes, we should.'
+                submitter 'alice,bob'
+                parameters {
+                    string(
+                        name: 'PERSON'
+                        defaultValue: 'Mr Jenkins'
+                        description: 'Who should I say hello to?'
+                    )
+                }
+            }
             steps {
-                sh 'node --version'
+                echo "Hello, ${PERSON}, nice to meet you"
             }
         }
     }
