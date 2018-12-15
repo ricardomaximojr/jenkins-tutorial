@@ -1,12 +1,13 @@
 pipeline {
-    agent any
-    tools {
-        maven 'apache-maven-3.0.1'
+    agent {
+        docker {
+            image 'node:7-alpine'
+        }
     }
     stages {
-        stage('Example') {
+        stage('Test') {
             steps {
-                sh 'mvn --version'
+                sh 'node --version'
             }
         }
     }
