@@ -12,9 +12,10 @@ pipeline {
         }
         stage('Example Deploy') {
             when {
-                allOf {
-                    branch 'master'
-                    environment name: 'DEPLOY_TO', value: 'master'
+                branch 'production'
+                anyOf {
+                    environment name: 'DEPLOY_TO', value: 'production'
+                    environment name: 'DEPLOY_TO', value: 'staging'
                 }
             }
             steps {
