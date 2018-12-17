@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DEPLOY_TO = 'master'
+        DEPLOY_TO = 'production'
     }
     stages {
         stage('Example Build') {
@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Example Deploy') {
             when {
-                branch 'production'
+                branch 'master'
                 anyOf {
                     environment name: 'DEPLOY_TO', value: 'production'
                     environment name: 'DEPLOY_TO', value: 'staging'
