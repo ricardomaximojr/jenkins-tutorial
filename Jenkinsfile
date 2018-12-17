@@ -1,24 +1,18 @@
 pipeline {
-    agent any
-    environment {
-        DEPLOY_TO = 'production'
-    }
+    agent none
     stages {
         stage('Example Build') {
             steps {
                 echo 'Hello World'
-                sh 'printenv'
             }
         }
         stage('Example Deploy') {
+            agent {
+                lable "some-label"
+            }
             when {
-                expression {
-                    BRANCH_NAME ==~ /(master|staging)/
-                }
-                anyOf {
-                    environment name: 'DEPLOY_TO', value: 'production'
-                    environment name: 'DEPLOY_TO', value: 'staging'
-                }
+                beforeAgent true
+                branch 'master'
             }
             steps {
                 echo 'Deploying'
