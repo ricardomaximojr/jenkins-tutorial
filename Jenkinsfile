@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Example Deploy') {
             agent {
-                lable "some-label"
+                label "some-label"
             }
             when {
                 beforeAgent true
