@@ -4,6 +4,7 @@ pipeline {
         stage('Example Build') {
             steps {
                 echo 'Hello World'
+                sh 'printenv'
             }
         }
         stage('Example Deploy') {
