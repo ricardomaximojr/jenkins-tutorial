@@ -8,15 +8,10 @@ pipeline {
         }
         stage('Example Deploy') {
             when {
-                beforeInput true
-                branch 'master'
-            }
-            input {
-                message 'Deploy to production?'
-                id 'simple-input'
+                triggeredBy "TimerTriggered"
             }
             steps {
-                echo 'Deployting'
+                echo 'Deploying'
             }
         }
     }
