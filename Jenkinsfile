@@ -5,7 +5,7 @@ node {
         }
         catch (esc) {
             echo 'Something failed, I should sound the klaxons'
-            throw
+            // throw
         }
     }
 }
