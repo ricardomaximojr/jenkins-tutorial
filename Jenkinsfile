@@ -1,17 +1,46 @@
 pipeline {
     agent none
     stages {
-        stage('Example Build') {
+        stage('Non-Sequential Stage') {
+            agent {
+                label 'for-non-sequential'
+            }
             steps {
-                echo 'Hello World'
+                echo "On Non-Sequential Stage"
             }
         }
-        stage('Example Deploy') {
-            when {
-                triggeredBy "TimerTriggered"
+        stage('Sequential') {
+            agent {
+                label 'for-sequntial'
             }
-            steps {
-                echo 'Deploying'
+            environment {
+                FOR_SEQUENTIAL = 'some-value'
+            }
+            stages {
+                stage('In Sequential 1') {
+                    steps {
+                        echo 'In Sequential 1'
+                    }
+                }
+                stage('In Sequential 2') {
+                    steps {
+                        echo 'In Sequntial 2'
+                    }
+                }
+                stage('Parallel in Sequntial') {
+                    parallel {
+                        stage('In Parallel 1') {
+                            steps {
+                                echo 'In Parallel 1'
+                            }
+                        }
+                        stage('In Parallel 2') {
+                            steps {
+                                echo 'In Prallel 2'
+                            }
+                        }
+                    }
+                }
             }
         }
     }
