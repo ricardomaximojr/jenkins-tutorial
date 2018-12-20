@@ -1,14 +1,16 @@
 pipeline {
-    agent none
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            label 'for-non-sequential'
+            args '-v /tmp:/tmp'
+        }
+    }
     stages {
         stage('Non-Sequential Stage') {
-        agent {
-            docker {
-                image 'maven:3-alpine'
+            agent {
                 label 'for-non-sequential'
-                args '-v /tmp:/tmp'
             }
-        }
             steps {
                 echo "On Non-Sequential Stage"
             }
