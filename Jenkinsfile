@@ -1,47 +1,55 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('Non-Sequential Stage') {
-        agent {
-            docker {
-                image 'maven:3-alpine'
-                args '-v /tmp:/tmp'
-            }
-        }
+        stage('Non-Parallel Stage') {
             steps {
-                echo "On Non-Sequential Stage"
+                echo 'This stage will be executed first.'
             }
         }
-        stage('Sequential') {
-            agent {
-                docker {
-                    image 'python:3.5.1'
-                }
+        stage('Parallel') {
+            when {
+                branch 'master'
             }
-            environment {
-                FOR_SEQUENTIAL = 'some-value'
-            }
-            stages {
-                stage('In Sequential 1') {
+            failfast true
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        docker {
+                            image 'python:3.5.1'
+                            // label 'for-branch-a'
+                        }
+                    }
                     steps {
-                        echo 'In Sequential 1'
+                        echo 'On Branch A'
                     }
                 }
-                stage('In Sequential 2') {
+                stage('Branch B') {
+                    agent {
+                        docker {
+                            image 'maven:3.3.3'
+                            // label 'for-branch-b'
+                        }
+                    }
                     steps {
-                        echo 'In Sequential 2'
+                        echo 'On Branch B'
                     }
                 }
-                stage('Parallel in Sequential') {
-                    parallel {
-                        stage('In Parallel 1') {
+                stage('Branch C') {
+                    agent {
+                        docker {
+                            image 'node:6.3'
+                            // label 'for-branch-c'
+                        }
+                    }
+                    stages {
+                        stage('Nested 1') {
                             steps {
-                                echo 'In Parallel 1'
+                                echo 'In stage Nested 1 within Branch C'
                             }
                         }
-                        stage('In Parallel 2') {
+                        stage('Nested 2') {
                             steps {
-                                echo 'In Prallel 2'
+                                echo 'In stage Nested 2 within Branch C'
                             }
                         }
                     }
