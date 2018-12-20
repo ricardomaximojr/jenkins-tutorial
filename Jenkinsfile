@@ -1,9 +1,11 @@
 node {
     stage('Example') {
-        if (env.BRANCH_NAME == 'master') {
-            echo 'I only execute on the master branch'
-        } else {
-            echo 'I execute elsewhere'
+        try {
+            sh 'exit 1'
+        }
+        catch (esc) {
+            echo 'Something failed, I should sound the klaxons'
+            throw
         }
     }
 }
