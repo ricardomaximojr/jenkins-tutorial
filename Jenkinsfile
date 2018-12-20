@@ -6,11 +6,11 @@ pipeline {
                 echo 'This stage will be executed first.'
             }
         }
-        stage('Parallel') {
+        stage('Parallel Stage') {
             when {
                 branch 'master'
             }
-            failfast true
+            // failfast true
             parallel {
                 stage('Branch A') {
                     agent {
